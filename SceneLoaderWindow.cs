@@ -1,6 +1,6 @@
 ﻿// Scene Loader Window is a simple Editor Tool that provides you with easy access to all the scenes in your project. 
 /* 
-NOTES: 
+NOTES:
 - Make sure this script is in the Editor folder.
 - The scenes do not need to be added in Build Settings.
 */
