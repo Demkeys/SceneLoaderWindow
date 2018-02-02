@@ -1,4 +1,4 @@
-﻿// Scene Loader Window is a simple Editor Tool that provides you with easy access to all the scenes in your project. 
+// Scene Loader Window is a simple Unity Editor tool that provides you with easy access to all the scenes in your project. 
 /* 
 NOTES:
 - Make sure this script is in the Editor folder.
