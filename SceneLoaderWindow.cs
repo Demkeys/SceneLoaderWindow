@@ -1,6 +1,6 @@
-// Scene Loader Window is a simple Unity Editor tool that provides you with easy access to all the scenes in your project. 
+// Scene Loader Window is a simple Editor Tool that provides you with easy access to all the scenes in your project. 
 /* 
-NOTES:
+NOTES: 
 - Make sure this script is in the Editor folder.
 - The scenes do not need to be added in Build Settings.
 */
@@ -12,6 +12,7 @@ public class SceneLoaderWindow : EditorWindow {
 
 	string[] allSceneGUIDs; // Array to store the GUIDs of all the scene assets found.
 	GUIStyle guiStyle; // GUIStyle to customize the look of the LabelField
+	Vector2 scrollPosition; // Position of the scroll view
 
 	[MenuItem("My Tools/Scene Loader")]
 	public static void ShowLevelLoaderWindow()
@@ -26,12 +27,16 @@ public class SceneLoaderWindow : EditorWindow {
 		guiStyle.alignment = TextAnchor.MiddleCenter;
 		guiStyle.fontSize = 18;
 		guiStyle.fontStyle = FontStyle.Bold;
+
+		scrollPosition = new Vector2(0,0);
 	}
 
 	void OnGUI()
 	{
 		EditorGUILayout.LabelField("All Scenes", guiStyle); // Label saying "All Scenes", just for aesthetics
+		scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition); // Begin scroll view
 		CreateAllButtons();
+		EditorGUILayout.EndScrollView(); // End scroll view
 		Repaint(); // Repaint Window so that any changes (adding, deleting or renaming scenes) that have been made show up.	
 	}
 
