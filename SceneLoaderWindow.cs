@@ -12,6 +12,7 @@ public class SceneLoaderWindow : EditorWindow {
 
 	string[] allSceneGUIDs; // Array to store the GUIDs of all the scene assets found.
 	GUIStyle guiStyle; // GUIStyle to customize the look of the LabelField
+	GUIContent guiButtonContent; // GUIContent to customize the content of Buttons
 	Vector2 scrollPosition; // Position of the scroll view
 
 	[MenuItem("My Tools/Scene Loader")]
@@ -27,6 +28,9 @@ public class SceneLoaderWindow : EditorWindow {
 		guiStyle.alignment = TextAnchor.MiddleCenter;
 		guiStyle.fontSize = 18;
 		guiStyle.fontStyle = FontStyle.Bold;
+
+		// Setting up the GUIContent to be used later.
+		guiButtonContent = new GUIContent();
 
 		scrollPosition = new Vector2(0,0);
 	}
@@ -58,9 +62,12 @@ public class SceneLoaderWindow : EditorWindow {
 			// Read last cell of separatedAssetPath array to get scene name with file extension. Then split the scene name and the file
 			// extension, and store the scene name into sceneName variable.
 			string sceneName = separatedAssetPath[separatedAssetPath.Length-1].Split(separators[1])[0];
-			
+
+			guiButtonContent.text = sceneName; // Scene's name
+			guiButtonContent.tooltip = "Path: " + scenePath; // Full path starting from Asset's folder
+
 			// Create button
-			if(GUILayout.Button(sceneName)) EditorSceneManager.OpenScene(scenePath);
+			if(GUILayout.Button(guiButtonContent)) EditorSceneManager.OpenScene(scenePath);
 		}
 	}
 }
