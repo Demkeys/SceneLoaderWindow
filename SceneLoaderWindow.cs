@@ -20,7 +20,7 @@ public class SceneLoaderWindow : EditorWindow {
 	[MenuItem("My Tools/Scene Loader")]
 	public static void ShowLevelLoaderWindow()
 	{
-		EditorWindow.GetWindow(typeof(SceneLoaderWindow), false, "Level Loader");
+		EditorWindow.GetWindow(typeof(SceneLoaderWindow), false, "Scene Loader");
 	}
 
 	void OnEnable()
