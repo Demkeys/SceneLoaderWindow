@@ -1,6 +1,7 @@
 # SceneLoaderWindow
 
-Scene Loader Window is a simple Unity Editor tool that provides you with easy access to all the scenes in your project. 
+Scene Loader Window is a simple Unity Editor tool that provides you with easy access to all the scenes in your project.
+You can choose between OpenScene and OpenSceneAdditive and the tool will open your scene accordingly.
 
  
 NOTES:
