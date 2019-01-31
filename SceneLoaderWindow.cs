@@ -1,5 +1,6 @@
-// Scene Loader Window is a simple Editor Tool that provides you with easy access to all the scenes in your project. 
 /* 
+Scene Loader Window is a simple Editor Tool that provides you with easy access to all the scenes in your project. 
+You can choose between OpenScene and OpenSceneAdditive, and the tool will open your scene accordingly. 
 NOTES: 
 - Make sure this script is in the Editor folder.
 - The scenes do not need to be added in Build Settings.
@@ -14,6 +15,7 @@ public class SceneLoaderWindow : EditorWindow {
 	GUIStyle guiStyle; // GUIStyle to customize the look of the LabelField
 	GUIContent guiButtonContent; // GUIContent to customize the content of Buttons
 	Vector2 scrollPosition; // Position of the scroll view
+	int OpenMode; // OpenSceneMode as a number. 0 = Single, 1 = Additive.
 
 	[MenuItem("My Tools/Scene Loader")]
 	public static void ShowLevelLoaderWindow()
@@ -38,6 +40,11 @@ public class SceneLoaderWindow : EditorWindow {
 	void OnGUI()
 	{
 		EditorGUILayout.LabelField("All Scenes", guiStyle); // Label saying "All Scenes", just for aesthetics
+		
+		// Radio Buttons allowing user to choose between OpenScene and OpenSceneAdditive
+		OpenMode = GUILayout.SelectionGrid(OpenMode, 
+			new string[2] {"OpenScene","OpenSceneAdditive"}, 2, EditorStyles.toggle);
+		
 		scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition); // Begin scroll view
 		CreateAllButtons();
 		EditorGUILayout.EndScrollView(); // End scroll view
@@ -66,8 +73,8 @@ public class SceneLoaderWindow : EditorWindow {
 			guiButtonContent.text = sceneName; // Scene's name
 			guiButtonContent.tooltip = "Path: " + scenePath; // Full path starting from Asset's folder
 
-			// Create button
-			if(GUILayout.Button(guiButtonContent)) EditorSceneManager.OpenScene(scenePath);
+			if(GUILayout.Button(guiButtonContent)) EditorSceneManager.OpenScene(scenePath,
+				(OpenMode == 0) ? OpenSceneMode.Single : OpenSceneMode.Additive);
 		}
 	}
 }
